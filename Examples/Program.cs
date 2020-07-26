@@ -80,6 +80,9 @@ namespace Examples
 
             var bazaarProducts = hypixel.GetBazaarProducts();
             Console.WriteLine(bazaarProducts.Products["ENCHANTED_COAL"].QuickStatus.BuyPrice);
+
+            var socialMediaRequest = hypixel.GetUserByPlayerName("Artu");
+            Console.WriteLine(socialMediaRequest.Player.SocialMedia.Links.Instagram);
             #endregion
 
             #region Async
@@ -149,6 +152,9 @@ namespace Examples
 
             var bazaarProductsAsync = await hypixel.GetBazaarProductsAsync();
             Console.WriteLine(bazaarProducts.Products["ENCHANTED_COAL"].QuickStatus.BuyPrice);
+
+            var socialMediaRequestAsync = await hypixel.GetUserByPlayerNameAsync("Artu").ConfigureAwait(false);
+            Console.WriteLine(socialMediaRequestAsync.Player.SocialMedia.Links.Discord);
             #endregion
         }
     }
