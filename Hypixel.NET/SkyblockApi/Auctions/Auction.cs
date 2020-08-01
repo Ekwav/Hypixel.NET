@@ -70,6 +70,9 @@ namespace Hypixel.NET.SkyblockApi.Auctions
         [JsonProperty("claimed")]
         public bool Claimed { get; private set; }
 
+        [JsonProperty("bin")]
+        public bool BuyItNow { get; private set; }
+
         [JsonProperty("claimed_bidders")]
         public List<string> ClaimedBidders { get; private set; }
 
