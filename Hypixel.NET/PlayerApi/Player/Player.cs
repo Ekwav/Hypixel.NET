@@ -140,6 +140,9 @@ namespace Hypixel.NET.PlayerApi.Player
         [JsonProperty("mostRecentMonthlyPackageRank")]
         public string MostRecentMonthlyPackageRank { get; private set; }
 
+        [JsonProperty("socialMedia")]
+        public SocialMedia.SocialMedia SocialMedia;
+
 
     }
 }
