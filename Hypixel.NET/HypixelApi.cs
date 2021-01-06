@@ -45,6 +45,32 @@ namespace Hypixel.NET
             _apiResetTimer.Elapsed += ResetApiLimit;
         }
 
+        public AuctionsEnded getAuctionsEnded()
+        {
+            RateLimitCheck();
+
+            //Create the request
+            var client = new RestClient("https://api.hypixel.net/skyblock/");
+            var request = new RestRequest($"auctions_ended?key={_apiKey}", Method.GET);
+
+            //Get the response and Deserialize
+            var response = client.Execute(request);
+            var responseDeserialized = JsonConvert.DeserializeObject<AuctionsEnded>(response.Content);
+
+            //Verify that the request was successful
+            if (responseDeserialized.WasSuccessful)
+            {
+                _apiRequests = _apiRequests + 1;
+                //AddItemToCache(profileCache, response.Content);
+                responseDeserialized.FromCache = false;
+                return responseDeserialized;
+            }
+
+            var message = $"{responseDeserialized} Please double check your request information";
+            var hypixelException = new ApplicationException(message, response.ErrorException);
+            throw hypixelException;
+        }
+
         public bool IsApiKeyValid(string apiKey)
         {
             //Create the request
@@ -899,7 +925,7 @@ namespace Hypixel.NET
             var request = new RestRequest($"player?key={_apiKey}&uuid={uuid}", Method.GET);
 
             //Get the response and Deserialize
-            var response = await client.ExecuteTaskAsync(request).ConfigureAwait(false);
+            var response = await client.ExecuteAsync(request).ConfigureAwait(false);
             var responseDeserialized = await Task.Run(() => JsonConvert.DeserializeObject<GetPlayerData>(response.Content.Replace(".0", ""))).ConfigureAwait(false);
 
             //Verify that the request was successful
@@ -960,7 +986,7 @@ namespace Hypixel.NET
             var request = new RestRequest($"player?key={_apiKey}&uuid={uuid}", Method.GET);
 
             //Get the response and Deserialize
-            var response = await client.ExecuteTaskAsync(request).ConfigureAwait(false);
+            var response = await client.ExecuteAsync(request).ConfigureAwait(false);
             var responseDeserialized = await Task.Run(() => JsonConvert.DeserializeObject<GetPlayerData>(response.Content.Replace(".0", ""))).ConfigureAwait(false);
 
             //Verify that the request was successful
@@ -1014,7 +1040,7 @@ namespace Hypixel.NET
             var request = new RestRequest($"friends?key={_apiKey}&uuid={uuid}", Method.GET);
 
             //Get the response and Deserialize
-            var response = await client.ExecuteTaskAsync(request).ConfigureAwait(false);
+            var response = await client.ExecuteAsync(request).ConfigureAwait(false);
             var responseDeserialized = await Task.Run(() => JsonConvert.DeserializeObject<GetFriends>(response.Content)).ConfigureAwait(false);
 
             //Verify that the request was successful
@@ -1074,7 +1100,7 @@ namespace Hypixel.NET
             var request = new RestRequest($"guild?key={_apiKey}&name={guildName}", Method.GET);
 
             //Get the response and Deserialize
-            var response = await client.ExecuteTaskAsync(request).ConfigureAwait(false);
+            var response = await client.ExecuteAsync(request).ConfigureAwait(false);
             var responseDeserialized = await Task.Run(() => JsonConvert.DeserializeObject<GetGuild>(response.Content)).ConfigureAwait(false);
 
             string message;
@@ -1146,7 +1172,7 @@ namespace Hypixel.NET
             var request = new RestRequest($"guild?key={_apiKey}&player={uuid}", Method.GET);
 
             //Get the response and Deserialize
-            var response = await client.ExecuteTaskAsync(request).ConfigureAwait(false);
+            var response = await client.ExecuteAsync(request).ConfigureAwait(false);
             var responseDeserialized = await Task.Run(() => JsonConvert.DeserializeObject<GetGuild>(response.Content)).ConfigureAwait(false);
 
             //Verify that the request was successful
@@ -1175,7 +1201,7 @@ namespace Hypixel.NET
             var request = new RestRequest($"boosters?key={_apiKey}", Method.GET);
 
             //Get the response and Deserialize
-            var response = await client.ExecuteTaskAsync(request).ConfigureAwait(false);
+            var response = await client.ExecuteAsync(request).ConfigureAwait(false);
             var responseDeserialized = await Task.Run(() => JsonConvert.DeserializeObject<GetBoosters>(response.Content.Replace(".0", ""))).ConfigureAwait(false);
 
             //Verify that the request was successful
@@ -1201,7 +1227,7 @@ namespace Hypixel.NET
             var request = new RestRequest($"key?key={apiKey}", Method.GET);
 
             //Get the response and Deserialize
-            var response = await client.ExecuteTaskAsync(request).ConfigureAwait(false);
+            var response = await client.ExecuteAsync(request).ConfigureAwait(false);
             var responseDeserialized = await Task.Run(() => JsonConvert.DeserializeObject<GetKey>(response.Content)).ConfigureAwait(false);
 
             //Verify that the request was successful
@@ -1227,7 +1253,7 @@ namespace Hypixel.NET
             var request = new RestRequest($"watchdogstats?key={_apiKey}", Method.GET);
 
             //Get the response and Deserialize
-            var response = await client.ExecuteTaskAsync(request).ConfigureAwait(false);
+            var response = await client.ExecuteAsync(request).ConfigureAwait(false);
             var responseDeserialized = await Task.Run(() => JsonConvert.DeserializeObject<GetWatchdogStats>(response.Content)).ConfigureAwait(false);
 
             //Verify that the request was successful
@@ -1253,7 +1279,7 @@ namespace Hypixel.NET
             var request = new RestRequest($"leaderboards?key={_apiKey}", Method.GET);
 
             //Get the response and Deserialize
-            var response = await client.ExecuteTaskAsync(request).ConfigureAwait(false);
+            var response = await client.ExecuteAsync(request).ConfigureAwait(false);
             var responseDeserialized = await Task.Run (() => JsonConvert.DeserializeObject<GetLeaderboards>(response.Content)).ConfigureAwait(false);
 
             //Verify that the request was successful
@@ -1280,7 +1306,7 @@ namespace Hypixel.NET
             var request = new RestRequest($"gamecounts?key={_apiKey}", Method.GET);
 
             //Get the response and Deserialize
-            var response = await client.ExecuteTaskAsync(request).ConfigureAwait(false);
+            var response = await client.ExecuteAsync(request).ConfigureAwait(false);
             var responseDeserialized = await Task.Run(() => JsonConvert.DeserializeObject<GetGameCounts>(response.Content)).ConfigureAwait(false);
 
             //Verify that the request was successful
@@ -1326,7 +1352,7 @@ namespace Hypixel.NET
             var request = new RestRequest($"profile?key={_apiKey}&profile={skyblockProfileId}", Method.GET);
 
             //Get the response and Deserialize
-            var response = await client.ExecuteTaskAsync(request).ConfigureAwait(false);
+            var response = await client.ExecuteAsync(request).ConfigureAwait(false);
             var responseDeserialized = await Task.Run(() => JsonConvert.DeserializeObject<GetSkyBlockProfile>(response.Content)).ConfigureAwait(false);
 
             //Throw expection
@@ -1385,7 +1411,7 @@ namespace Hypixel.NET
             var request = new RestRequest($"auctions?key={_apiKey}&page={auctionPage}", Method.GET);
 
             //Get the response and Deserialize
-            var response = await client.ExecuteTaskAsync(request).ConfigureAwait(false);
+            var response = await client.ExecuteAsync(request).ConfigureAwait(false);
             var responseDeserialized = await Task.Run(() => JsonConvert.DeserializeObject<GetAuctionPage>(response.Content)).ConfigureAwait(false);
 
             //Verify that the request was successful
@@ -1429,7 +1455,7 @@ namespace Hypixel.NET
             var request = new RestRequest($"auction?key={_apiKey}&player={uuid}", Method.GET);
 
             //Get the response and Deserialize
-            var response = await client.ExecuteTaskAsync(request).ConfigureAwait(false);
+            var response = await client.ExecuteAsync(request).ConfigureAwait(false);
             var responseDeserialized = await Task.Run(() => JsonConvert.DeserializeObject<AuctionsByPlayer>(response.Content)).ConfigureAwait(false);
 
             //Verify that the request was successful
@@ -1491,7 +1517,7 @@ namespace Hypixel.NET
             var request = new RestRequest($"auction?key={_apiKey}&profile={id}", Method.GET);
 
             //Get the response and Deserialize
-            var response = await client.ExecuteTaskAsync(request).ConfigureAwait(false);
+            var response = await client.ExecuteAsync(request).ConfigureAwait(false);
             var responseDeserialized = await Task.Run(() => JsonConvert.DeserializeObject<AuctionsByProfile>(response.Content)).ConfigureAwait(false);
 
             //Verify that the request was successful
@@ -1537,7 +1563,7 @@ namespace Hypixel.NET
             var request = new RestRequest($"auction?key={_apiKey}&uuid={id}", Method.GET);
 
             //Get the response and Deserialize
-            var response = await client.ExecuteTaskAsync(request).ConfigureAwait(false);
+            var response = await client.ExecuteAsync(request).ConfigureAwait(false);
             var responseDeserialized = await Task.Run(() => JsonConvert.DeserializeObject<AuctionByAuctionId>(response.Content)).ConfigureAwait(false);
 
             //Verify that the request was successful
@@ -1564,7 +1590,7 @@ namespace Hypixel.NET
             var request = new RestRequest($"skyblock/bazaar?key={_apiKey}", Method.GET);
 
             //Get the response and Deserialize
-            var response = await client.ExecuteTaskAsync(request).ConfigureAwait(false);
+            var response = await client.ExecuteAsync(request).ConfigureAwait(false);
             var responseDeserialized = await Task.Run(() => JsonConvert.DeserializeObject<GetBazaarProducts>(response.Content)).ConfigureAwait(false);
 
             //Verify that the request was successful
@@ -1589,7 +1615,7 @@ namespace Hypixel.NET
             var request = new RestRequest($"users/profiles/minecraft/{playerName}", Method.GET);
 
             //Get the response and Deserialize
-            var response = await client.ExecuteTaskAsync(request).ConfigureAwait(false);
+            var response = await client.ExecuteAsync(request).ConfigureAwait(false);
 
             if (response.Content == "")
             {

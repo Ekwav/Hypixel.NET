@@ -77,5 +77,8 @@ namespace Hypixel.NET.SkyblockApi
 
         [JsonProperty("bids")]
         public List<Bids> Bids { get; private set; }
+
+        [JsonProperty("bin")]
+        public bool BuyItNow { get; private set; }
     }
 }
