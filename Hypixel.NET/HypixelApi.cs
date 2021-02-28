@@ -640,8 +640,6 @@ namespace Hypixel.NET
 
         public GetAuctionPage GetAuctionPage(int auctionPage)
         {
-            RateLimitCheck();
-
             //Create the request
             var client = new RestClient("https://api.hypixel.net/skyblock");
             var request = new RestRequest($"auctions?key={_apiKey}&page={auctionPage}", Method.GET);
