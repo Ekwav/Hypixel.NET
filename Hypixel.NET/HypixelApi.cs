@@ -47,8 +47,6 @@ namespace Hypixel.NET
 
         public AuctionsEnded getAuctionsEnded()
         {
-            RateLimitCheck();
-
             //Create the request
             var client = new RestClient("https://api.hypixel.net/skyblock/");
             var request = new RestRequest($"auctions_ended?key={_apiKey}", Method.GET);
@@ -1402,8 +1400,6 @@ namespace Hypixel.NET
 
         public async Task <GetAuctionPage> GetAuctionPageAsync(int auctionPage)
         {
-            RateLimitCheck();
-
             //Create the request
             var client = new RestClient("https://api.hypixel.net/skyblock");
             var request = new RestRequest($"auctions?key={_apiKey}&page={auctionPage}", Method.GET);
@@ -1581,7 +1577,6 @@ namespace Hypixel.NET
 
         public async Task<GetBazaarProducts> GetBazaarProductsAsync()
         {
-            RateLimitCheck();
 
             //Create the request
             var client = new RestClient("https://api.hypixel.net/");
