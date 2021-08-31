@@ -33,6 +33,12 @@ namespace Hypixel.NET
             _apiKey = apiKey;
             _cacheStoreTime = cacheTimeInSeconds;
 
+            if (apiKey == null)
+            {
+                Console.WriteLine("No API key set. you can only consume public endpoints");
+                return;
+            }
+
             if (!IsApiKeyValid(apiKey))
             {
                 var message = " Invalid API key. Please double check your information";
@@ -892,7 +898,7 @@ namespace Hypixel.NET
         #region Async
 
         #region Player
-        public async Task <GetPlayerData> GetUserByUuidAsync(string uuid)
+        public async Task<GetPlayerData> GetUserByUuidAsync(string uuid)
         {
             ApplicationException hypixelException;
 
@@ -1054,7 +1060,7 @@ namespace Hypixel.NET
             throw hypixelException;
         }
 
-        public async Task <GetFriends> GetPlayerFriendsByPlayerNameAsync(string playerName)
+        public async Task<GetFriends> GetPlayerFriendsByPlayerNameAsync(string playerName)
         {
             var playerUuid = await GetUuidFromPlayerNameAsync(playerName).ConfigureAwait(false);
 
@@ -1070,7 +1076,7 @@ namespace Hypixel.NET
         #endregion
 
         #region Guild
-        public async Task <GetGuild> GetGuildByGuildNameAsync(string guildName)
+        public async Task<GetGuild> GetGuildByGuildNameAsync(string guildName)
         {
             var cacheGuild = guildName + "Type:GuildName";
 
@@ -1142,7 +1148,7 @@ namespace Hypixel.NET
             return await GetGuildByUuidAsync(playerUuid).ConfigureAwait(false);
         }
 
-        public async Task <GetGuild> GetGuildByUuidAsync(string uuid)
+        public async Task<GetGuild> GetGuildByUuidAsync(string uuid)
         {
             var cacheGuild = uuid + "Type:GuildPlayerUuid";
 
@@ -1188,7 +1194,7 @@ namespace Hypixel.NET
         #endregion
 
         #region Boosters
-        public async Task <GetBoosters> GetBoostersAsync()
+        public async Task<GetBoosters> GetBoostersAsync()
         {
             RateLimitCheck();
 
@@ -1215,7 +1221,7 @@ namespace Hypixel.NET
         #endregion
 
         #region Api Key info
-        public async Task <GetKey> GetApiKeyInformationAsync(string apiKey)
+        public async Task<GetKey> GetApiKeyInformationAsync(string apiKey)
         {
             RateLimitCheck();
             //Create the request
@@ -1241,7 +1247,7 @@ namespace Hypixel.NET
         #endregion
 
         #region Watchdog
-        public async Task <GetWatchdogStats> GetWatchdogStatsAsync()
+        public async Task<GetWatchdogStats> GetWatchdogStatsAsync()
         {
             RateLimitCheck();
             //Create the request
@@ -1267,7 +1273,7 @@ namespace Hypixel.NET
         #endregion
 
         #region Leaderboards
-        public async Task <GetLeaderboards> GetLeaderboardsAsync()
+        public async Task<GetLeaderboards> GetLeaderboardsAsync()
         {
             RateLimitCheck();
             //Create the request
@@ -1276,7 +1282,7 @@ namespace Hypixel.NET
 
             //Get the response and Deserialize
             var response = await client.ExecuteAsync(request).ConfigureAwait(false);
-            var responseDeserialized = await Task.Run (() => JsonConvert.DeserializeObject<GetLeaderboards>(response.Content)).ConfigureAwait(false);
+            var responseDeserialized = await Task.Run(() => JsonConvert.DeserializeObject<GetLeaderboards>(response.Content)).ConfigureAwait(false);
 
             //Verify that the request was successful
             if (responseDeserialized.WasSuccessful)
@@ -1293,7 +1299,7 @@ namespace Hypixel.NET
         #endregion
 
         #region Game Counts
-        public async Task <GetGameCounts> GetGameCountsAsync()
+        public async Task<GetGameCounts> GetGameCountsAsync()
         {
             RateLimitCheck();
 
@@ -1320,7 +1326,7 @@ namespace Hypixel.NET
         #endregion
 
         #region Skyblock
-        public async Task <GetSkyBlockProfile> GetSkyblockProfileByProfileIdAsync(string skyblockProfileId)
+        public async Task<GetSkyBlockProfile> GetSkyblockProfileByProfileIdAsync(string skyblockProfileId)
         {
             string message;
             ApplicationException hypixelException;
@@ -1398,7 +1404,7 @@ namespace Hypixel.NET
             return profileList;
         }
 
-        public async Task <GetAuctionPage> GetAuctionPageAsync(int auctionPage)
+        public async Task<GetAuctionPage> GetAuctionPageAsync(int auctionPage)
         {
             //Create the request
             var client = new RestClient("https://api.hypixel.net/skyblock");
@@ -1421,7 +1427,7 @@ namespace Hypixel.NET
             throw hypixelException;
         }
 
-        public async Task <AuctionsByPlayer> GetAuctionsByPlayerUuidAsync(string uuid)
+        public async Task<AuctionsByPlayer> GetAuctionsByPlayerUuidAsync(string uuid)
         {
             string message;
             ApplicationException hypixelException;
@@ -1483,7 +1489,7 @@ namespace Hypixel.NET
             return await GetAuctionsByPlayerUuidAsync(uuid).ConfigureAwait(false);
         }
 
-        public async Task <AuctionsByProfile> GetAuctionsByProfileIdAsync(string id)
+        public async Task<AuctionsByProfile> GetAuctionsByProfileIdAsync(string id)
         {
             string message;
             ApplicationException hypixelException;
@@ -1529,7 +1535,7 @@ namespace Hypixel.NET
             throw hypixelException;
         }
 
-        public async Task <AuctionByAuctionId> GetAuctionByAuctionIdAsync(string id)
+        public async Task<AuctionByAuctionId> GetAuctionByAuctionIdAsync(string id)
         {
             string message;
             ApplicationException hypixelException;
@@ -1601,7 +1607,7 @@ namespace Hypixel.NET
         #endregion
 
         #region Mojang
-        private async Task <string> GetUuidFromPlayerNameAsync(string playerName)
+        private async Task<string> GetUuidFromPlayerNameAsync(string playerName)
         {
             //Create the request
             var client = new RestClient("https://api.mojang.com/");
