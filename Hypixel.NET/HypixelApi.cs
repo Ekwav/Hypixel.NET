@@ -51,11 +51,11 @@ namespace Hypixel.NET
             _apiResetTimer.Elapsed += ResetApiLimit;
         }
 
-        public AuctionsEnded getAuctionsEnded()
+        public AuctionsEnded getAuctionsEnded(RestSharp.Method method = Method.GET)
         {
             //Create the request
             var client = new RestClient("https://api.hypixel.net/skyblock/");
-            var request = new RestRequest($"auctions_ended?key={_apiKey}", Method.GET);
+            var request = new RestRequest($"auctions_ended?key={_apiKey}", method);
 
             //Get the response and Deserialize
             var response = client.Execute(request);
