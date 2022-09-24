@@ -51,7 +51,7 @@ namespace Hypixel.NET
             _apiResetTimer.Elapsed += ResetApiLimit;
         }
 
-        public AuctionsEnded getAuctionsEnded(RestSharp.Method method = Method.GET)
+        public AuctionsEnded getAuctionsEnded(RestSharp.Method method = Method.Get)
         {
             //Create the request
             var client = new RestClient("https://api.hypixel.net/skyblock/");
@@ -79,7 +79,7 @@ namespace Hypixel.NET
         {
             //Create the request
             var client = new RestClient("https://api.hypixel.net/");
-            var request = new RestRequest($"key?key={apiKey}", Method.GET);
+            var request = new RestRequest($"key?key={apiKey}", Method.Get);
 
             //Get the response and Deserialize
             var response = client.Execute(request);
@@ -163,7 +163,7 @@ namespace Hypixel.NET
 
             //Create the request
             var client = new RestClient("https://api.hypixel.net/");
-            var request = new RestRequest($"player?key={_apiKey}&uuid={uuid}", Method.GET);
+            var request = new RestRequest($"player?key={_apiKey}&uuid={uuid}", Method.Get);
 
             //Get the response and Deserialize
             var response = client.Execute(request);
@@ -224,7 +224,7 @@ namespace Hypixel.NET
 
             //Create the request
             var client = new RestClient("https://api.hypixel.net/");
-            var request = new RestRequest($"player?key={_apiKey}&uuid={uuid}", Method.GET);
+            var request = new RestRequest($"player?key={_apiKey}&uuid={uuid}", Method.Get);
 
             //Get the response and Deserialize
             var response = client.Execute(request);
@@ -278,7 +278,7 @@ namespace Hypixel.NET
 
             //Create the request
             var client = new RestClient("https://api.hypixel.net/");
-            var request = new RestRequest($"friends?key={_apiKey}&uuid={uuid}", Method.GET);
+            var request = new RestRequest($"friends?key={_apiKey}&uuid={uuid}", Method.Get);
 
             //Get the response and Deserialize
             var response = client.Execute(request);
@@ -338,7 +338,7 @@ namespace Hypixel.NET
 
             //Create the request
             var client = new RestClient("https://api.hypixel.net/");
-            var request = new RestRequest($"guild?key={_apiKey}&name={guildName}", Method.GET);
+            var request = new RestRequest($"guild?key={_apiKey}&name={guildName}", Method.Get);
 
             //Get the response and Deserialize
             var response = client.Execute(request);
@@ -409,7 +409,7 @@ namespace Hypixel.NET
 
             //Create the request
             var client = new RestClient("https://api.hypixel.net/");
-            var request = new RestRequest($"guild?key={_apiKey}&player={uuid}", Method.GET);
+            var request = new RestRequest($"guild?key={_apiKey}&player={uuid}", Method.Get);
 
             //Get the response and Deserialize
             var response = client.Execute(request);
@@ -438,7 +438,7 @@ namespace Hypixel.NET
 
             //Create the request
             var client = new RestClient("https://api.hypixel.net/");
-            var request = new RestRequest($"boosters?key={_apiKey}", Method.GET);
+            var request = new RestRequest($"boosters?key={_apiKey}", Method.Get);
 
             //Get the response and Deserialize
             var response = client.Execute(request);
@@ -464,7 +464,7 @@ namespace Hypixel.NET
             RateLimitCheck();
             //Create the request
             var client = new RestClient("https://api.hypixel.net/");
-            var request = new RestRequest($"key?key={apiKey}", Method.GET);
+            var request = new RestRequest($"key?key={apiKey}", Method.Get);
 
             //Get the response and Deserialize
             var response = client.Execute(request);
@@ -490,7 +490,7 @@ namespace Hypixel.NET
             RateLimitCheck();
             //Create the request
             var client = new RestClient("https://api.hypixel.net/");
-            var request = new RestRequest($"watchdogstats?key={_apiKey}", Method.GET);
+            var request = new RestRequest($"watchdogstats?key={_apiKey}", Method.Get);
 
             //Get the response and Deserialize
             var response = client.Execute(request);
@@ -516,7 +516,7 @@ namespace Hypixel.NET
             RateLimitCheck();
             //Create the request
             var client = new RestClient("https://api.hypixel.net/");
-            var request = new RestRequest($"leaderboards?key={_apiKey}", Method.GET);
+            var request = new RestRequest($"leaderboards?key={_apiKey}", Method.Get);
 
             //Get the response and Deserialize
             var response = client.Execute(request);
@@ -543,7 +543,7 @@ namespace Hypixel.NET
 
             //Create the request
             var client = new RestClient("https://api.hypixel.net/");
-            var request = new RestRequest($"gamecounts?key={_apiKey}", Method.GET);
+            var request = new RestRequest($"gamecounts?key={_apiKey}", Method.Get);
 
             //Get the response and Deserialize
             var response = client.Execute(request);
@@ -589,7 +589,7 @@ namespace Hypixel.NET
 
             //Create the request
             var client = new RestClient("https://api.hypixel.net/skyblock");
-            var request = new RestRequest($"profile?key={_apiKey}&profile={skyblockProfileId}", Method.GET);
+            var request = new RestRequest($"profile?key={_apiKey}&profile={skyblockProfileId}", Method.Get);
 
             //Get the response and Deserialize
             var response = client.Execute(request);
@@ -646,7 +646,7 @@ namespace Hypixel.NET
         {
             //Create the request
             var client = new RestClient("https://api.hypixel.net/skyblock");
-            var request = new RestRequest($"auctions?key={_apiKey}&page={auctionPage}", Method.GET);
+            var request = new RestRequest($"auctions?key={_apiKey}&page={auctionPage}", Method.Get);
 
             //Get the response and Deserialize
             var response = client.Execute(request);
@@ -690,7 +690,7 @@ namespace Hypixel.NET
 
             //Create the request
             var client = new RestClient("https://api.hypixel.net/skyblock/");
-            var request = new RestRequest($"auction?key={_apiKey}&player={uuid}", Method.GET);
+            var request = new RestRequest($"auction?key={_apiKey}&player={uuid}", Method.Get);
 
             //Get the response and Deserialize
             var response = client.Execute(request);
@@ -752,7 +752,7 @@ namespace Hypixel.NET
 
             //Create the request
             var client = new RestClient("https://api.hypixel.net/skyblock");
-            var request = new RestRequest($"auction?key={_apiKey}&profile={id}", Method.GET);
+            var request = new RestRequest($"auction?key={_apiKey}&profile={id}", Method.Get);
 
             //Get the response and Deserialize
             var response = client.Execute(request);
@@ -798,7 +798,7 @@ namespace Hypixel.NET
 
             //Create the request
             var client = new RestClient("https://api.hypixel.net/skyblock");
-            var request = new RestRequest($"auction?key={_apiKey}&uuid={id}", Method.GET);
+            var request = new RestRequest($"auction?key={_apiKey}&uuid={id}", Method.Get);
 
             //Get the response and Deserialize
             var response = client.Execute(request);
@@ -826,7 +826,7 @@ namespace Hypixel.NET
 
             //Create the request
             var client = new RestClient("https://api.hypixel.net/skyblock");
-            var request = new RestRequest($"news?key={_apiKey}", Method.GET);
+            var request = new RestRequest($"news?key={_apiKey}", Method.Get);
 
             //Get the response and Deserialize
             var response = client.Execute(request);
@@ -851,7 +851,7 @@ namespace Hypixel.NET
 
             //Create the request
             var client = new RestClient("https://api.hypixel.net/");
-            var request = new RestRequest($"skyblock/bazaar?key={_apiKey}", Method.GET);
+            var request = new RestRequest($"skyblock/bazaar?key={_apiKey}", Method.Get);
 
             //Get the response and Deserialize
             var response = client.Execute(request);
@@ -876,7 +876,7 @@ namespace Hypixel.NET
         {
             //Create the request
             var client = new RestClient("https://api.mojang.com/");
-            var request = new RestRequest($"users/profiles/minecraft/{playerName}", Method.GET);
+            var request = new RestRequest($"users/profiles/minecraft/{playerName}", Method.Get);
 
             //Get the response and Deserialize
             var response = client.Execute(request);
@@ -924,7 +924,7 @@ namespace Hypixel.NET
 
             //Create the request
             var client = new RestClient("https://api.hypixel.net/");
-            var request = new RestRequest($"player?key={_apiKey}&uuid={uuid}", Method.GET);
+            var request = new RestRequest($"player?key={_apiKey}&uuid={uuid}", Method.Get);
 
             //Get the response and Deserialize
             var response = await client.ExecuteAsync(request).ConfigureAwait(false);
@@ -985,7 +985,7 @@ namespace Hypixel.NET
 
             //Create the request
             var client = new RestClient("https://api.hypixel.net/");
-            var request = new RestRequest($"player?key={_apiKey}&uuid={uuid}", Method.GET);
+            var request = new RestRequest($"player?key={_apiKey}&uuid={uuid}", Method.Get);
 
             //Get the response and Deserialize
             var response = await client.ExecuteAsync(request).ConfigureAwait(false);
@@ -1039,7 +1039,7 @@ namespace Hypixel.NET
 
             //Create the request
             var client = new RestClient("https://api.hypixel.net/");
-            var request = new RestRequest($"friends?key={_apiKey}&uuid={uuid}", Method.GET);
+            var request = new RestRequest($"friends?key={_apiKey}&uuid={uuid}", Method.Get);
 
             //Get the response and Deserialize
             var response = await client.ExecuteAsync(request).ConfigureAwait(false);
@@ -1099,7 +1099,7 @@ namespace Hypixel.NET
 
             //Create the request
             var client = new RestClient("https://api.hypixel.net/");
-            var request = new RestRequest($"guild?key={_apiKey}&name={guildName}", Method.GET);
+            var request = new RestRequest($"guild?key={_apiKey}&name={guildName}", Method.Get);
 
             //Get the response and Deserialize
             var response = await client.ExecuteAsync(request).ConfigureAwait(false);
@@ -1171,7 +1171,7 @@ namespace Hypixel.NET
 
             //Create the request
             var client = new RestClient("https://api.hypixel.net/");
-            var request = new RestRequest($"guild?key={_apiKey}&player={uuid}", Method.GET);
+            var request = new RestRequest($"guild?key={_apiKey}&player={uuid}", Method.Get);
 
             //Get the response and Deserialize
             var response = await client.ExecuteAsync(request).ConfigureAwait(false);
@@ -1200,7 +1200,7 @@ namespace Hypixel.NET
 
             //Create the request
             var client = new RestClient("https://api.hypixel.net/");
-            var request = new RestRequest($"boosters?key={_apiKey}", Method.GET);
+            var request = new RestRequest($"boosters?key={_apiKey}", Method.Get);
 
             //Get the response and Deserialize
             var response = await client.ExecuteAsync(request).ConfigureAwait(false);
@@ -1226,7 +1226,7 @@ namespace Hypixel.NET
             RateLimitCheck();
             //Create the request
             var client = new RestClient("https://api.hypixel.net/");
-            var request = new RestRequest($"key?key={apiKey}", Method.GET);
+            var request = new RestRequest($"key?key={apiKey}", Method.Get);
 
             //Get the response and Deserialize
             var response = await client.ExecuteAsync(request).ConfigureAwait(false);
@@ -1252,7 +1252,7 @@ namespace Hypixel.NET
             RateLimitCheck();
             //Create the request
             var client = new RestClient("https://api.hypixel.net/");
-            var request = new RestRequest($"watchdogstats?key={_apiKey}", Method.GET);
+            var request = new RestRequest($"watchdogstats?key={_apiKey}", Method.Get);
 
             //Get the response and Deserialize
             var response = await client.ExecuteAsync(request).ConfigureAwait(false);
@@ -1278,7 +1278,7 @@ namespace Hypixel.NET
             RateLimitCheck();
             //Create the request
             var client = new RestClient("https://api.hypixel.net/");
-            var request = new RestRequest($"leaderboards?key={_apiKey}", Method.GET);
+            var request = new RestRequest($"leaderboards?key={_apiKey}", Method.Get);
 
             //Get the response and Deserialize
             var response = await client.ExecuteAsync(request).ConfigureAwait(false);
@@ -1305,7 +1305,7 @@ namespace Hypixel.NET
 
             //Create the request
             var client = new RestClient("https://api.hypixel.net/");
-            var request = new RestRequest($"gamecounts?key={_apiKey}", Method.GET);
+            var request = new RestRequest($"gamecounts?key={_apiKey}", Method.Get);
 
             //Get the response and Deserialize
             var response = await client.ExecuteAsync(request).ConfigureAwait(false);
@@ -1351,7 +1351,7 @@ namespace Hypixel.NET
 
             //Create the request
             var client = new RestClient("https://api.hypixel.net/skyblock");
-            var request = new RestRequest($"profile?key={_apiKey}&profile={skyblockProfileId}", Method.GET);
+            var request = new RestRequest($"profile?key={_apiKey}&profile={skyblockProfileId}", Method.Get);
 
             //Get the response and Deserialize
             var response = await client.ExecuteAsync(request).ConfigureAwait(false);
@@ -1408,7 +1408,7 @@ namespace Hypixel.NET
         {
             //Create the request
             var client = new RestClient("https://api.hypixel.net/skyblock");
-            var request = new RestRequest($"auctions?key={_apiKey}&page={auctionPage}", Method.GET);
+            var request = new RestRequest($"auctions?key={_apiKey}&page={auctionPage}", Method.Get);
 
             //Get the response and Deserialize
             var response = await client.ExecuteAsync(request).ConfigureAwait(false);
@@ -1452,7 +1452,7 @@ namespace Hypixel.NET
 
             //Create the request
             var client = new RestClient("https://api.hypixel.net/skyblock/");
-            var request = new RestRequest($"auction?key={_apiKey}&player={uuid}", Method.GET);
+            var request = new RestRequest($"auction?key={_apiKey}&player={uuid}", Method.Get);
 
             //Get the response and Deserialize
             var response = await client.ExecuteAsync(request).ConfigureAwait(false);
@@ -1514,7 +1514,7 @@ namespace Hypixel.NET
 
             //Create the request
             var client = new RestClient("https://api.hypixel.net/skyblock");
-            var request = new RestRequest($"auction?key={_apiKey}&profile={id}", Method.GET);
+            var request = new RestRequest($"auction?key={_apiKey}&profile={id}", Method.Get);
 
             //Get the response and Deserialize
             var response = await client.ExecuteAsync(request).ConfigureAwait(false);
@@ -1560,7 +1560,7 @@ namespace Hypixel.NET
 
             //Create the request
             var client = new RestClient("https://api.hypixel.net/skyblock");
-            var request = new RestRequest($"auction?key={_apiKey}&uuid={id}", Method.GET);
+            var request = new RestRequest($"auction?key={_apiKey}&uuid={id}", Method.Get);
 
             //Get the response and Deserialize
             var response = await client.ExecuteAsync(request).ConfigureAwait(false);
@@ -1586,7 +1586,7 @@ namespace Hypixel.NET
 
             //Create the request
             var client = new RestClient("https://api.hypixel.net/");
-            var request = new RestRequest($"skyblock/bazaar?key={_apiKey}", Method.GET);
+            var request = new RestRequest($"skyblock/bazaar?key={_apiKey}", Method.Get);
 
             //Get the response and Deserialize
             var response = await client.ExecuteAsync(request).ConfigureAwait(false);
@@ -1611,7 +1611,7 @@ namespace Hypixel.NET
         {
             //Create the request
             var client = new RestClient("https://api.mojang.com/");
-            var request = new RestRequest($"users/profiles/minecraft/{playerName}", Method.GET);
+            var request = new RestRequest($"users/profiles/minecraft/{playerName}", Method.Get);
 
             //Get the response and Deserialize
             var response = await client.ExecuteAsync(request).ConfigureAwait(false);
