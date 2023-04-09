@@ -46,7 +46,7 @@ namespace Hypixel.NET.SkyblockApi
 
 
         [JsonProperty("price")]
-        public int Price { get; private set; }
+        public long Price { get; private set; }
 
         [JsonProperty("bin")]
         public bool BuyItemNow { get; private set; }
