@@ -16,9 +16,9 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
     <PackageReference Include="RestSharp" Version="112.1.0" />
-    <PackageReference Include="System.Runtime.Caching" Version="9.0.3" />
+    <PackageReference Include="System.Runtime.Caching" Version="9.0.10" />
   </ItemGroup>
 
   <ItemGroup>
