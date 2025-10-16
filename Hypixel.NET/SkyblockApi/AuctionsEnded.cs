@@ -30,6 +30,8 @@ namespace Hypixel.NET.SkyblockApi
 
         [JsonProperty("buyer")]
         public string Buyer { get; private set; }
+        [JsonProperty("buyer_profile")]
+        public string BuyerProfile { get; private set; }
 
 
         [JsonProperty("timestamp")]
